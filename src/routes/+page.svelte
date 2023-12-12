@@ -15,19 +15,21 @@
 		let response = await getCurrentSeasonAnimes();
 		seasonalAnimes = response;
 		loading = false;
-        console.log(seasonalAnimes);
+		console.log(seasonalAnimes);
 	}
 </script>
 
 <main>
-    <div class="header">
-        
-    </div>
+	<div class="header"></div>
 	<div class="content">
 		{#if loading}
 			<h3>Loading</h3>
 		{:else}
-			<Card data={seasonalAnimes} />
+			<div class="card-grid">
+				{#each seasonalAnimes as s_anime}
+					<Card data={s_anime} />
+				{/each}
+			</div>
 		{/if}
 	</div>
 </main>
@@ -44,5 +46,12 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		margin-top: 300px;
+	}
+	.card-grid {
+		display: grid;
+		grid-template: 400px / auto auto auto;
+		grid-gap: 10px;
+		padding: 10px;
 	}
 </style>
